@@ -7,6 +7,11 @@ PyQt5 >= 5.8
 ## Setup
 ```pip3 install git+https://github.com/yjg30737/pyqt-selection-box.git --upgrade```
 
+## Feature
+* Cursor shape changes properly for position (horizontal/vertical edge, etc.)
+* Being able to resize horizontally/vertically/diagonally 
+* Being able to move
+
 ## Example
 Code Sample
 ```python
@@ -49,5 +54,5 @@ Result
 https://user-images.githubusercontent.com/55078043/148641700-1a2994a9-c536-40b1-a6c0-575c2ca9be76.mp4
 
 ## Note
-```SelectionBox``` class inherits ```QGraphicsRectItem```. Cursor change, resizing, moving features work like a charm so far.
+```SelectionBox``` class inherits ```QGraphicsRectItem```.
 
