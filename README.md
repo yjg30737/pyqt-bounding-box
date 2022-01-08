@@ -48,4 +48,6 @@ Result
 
 https://user-images.githubusercontent.com/55078043/148641700-1a2994a9-c536-40b1-a6c0-575c2ca9be76.mp4
 
+## Note
+```SelectionBox``` class inherits ```QGraphicsRectItem```. Cursor change, resizing, moving features work like a charm so far.
 
