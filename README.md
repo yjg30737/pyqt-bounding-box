@@ -11,6 +11,7 @@ PyQt5 >= 5.8
 * Cursor shape changes properly for position (horizontal/vertical edge, etc.)
 * Being able to resize horizontally/vertically/diagonally 
 * Being able to move
+* Being able to change the line width with ```setLineWidth(n: int)```
 
 ## Example
 Code Sample
