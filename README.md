@@ -9,9 +9,9 @@ PyQt5 >= 5.8
 
 ## Feature
 * Cursor shape changes properly for position (horizontal/vertical edge, etc.)
-* Being able to resize horizontally/vertically/diagonally 
-* Being able to move with either mouse cursor or arrow keys
-* Being able to change the line width with ```setLineWidth(n: int)```
+* Being able to resize the box horizontally/vertically/diagonally 
+* Being able to move the box with either mouse cursor or arrow keys
+* Being able to change the line width of box with ```setLineWidth(n: int)```
 
 ## Example
 Code Sample
