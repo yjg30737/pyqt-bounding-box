@@ -32,6 +32,7 @@ class Example(QWidget):
         self.__scene.setSceneRect(0, 0, 400, 400)
 
         item = SelectionBox()
+        # item.setLineWidth(8) If you want to change the edge line width, add the code.
         self.__scene.addItem(item)
         view.setScene(self.__scene)
 
@@ -52,8 +53,9 @@ if __name__ == "__main__":
 
 Result
 
-https://user-images.githubusercontent.com/55078043/148641700-1a2994a9-c536-40b1-a6c0-575c2ca9be76.mp4
+https://user-images.githubusercontent.com/55078043/148708740-cd1f0765-7768-44b6-88bb-770e2d34fe12.mp4
 
 ## Note
 ```SelectionBox``` class inherits ```QGraphicsRectItem```.
 
+Default line width value is 3.
