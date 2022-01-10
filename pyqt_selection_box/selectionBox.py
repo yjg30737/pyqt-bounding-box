@@ -182,6 +182,20 @@ class SelectionBox(QGraphicsRectItem):
 
         return super().hoverMoveEvent(e)
 
+    # moving with arrow keys
+    def keyPressEvent(self, e):
+        tr = self.transform()
+        if e.key() == Qt.Key_Up:
+            tr.translate(0, -1)
+        if e.key() == Qt.Key_Down:
+            tr.translate(0, 1)
+        if e.key() == Qt.Key_Left:
+            tr.translate(-1, 0)
+        if e.key() == Qt.Key_Right:
+            tr.translate(1, 0)
+        self.setTransform(tr)
+        return super().keyPressEvent(e)
+
     def setLineWidth(self, n: int):
         self.__line_width = n
         self.__setStyleOfSelectionBox()
