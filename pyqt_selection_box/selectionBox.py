@@ -38,7 +38,14 @@ class SelectionBox(QGraphicsRectItem):
         self.setPen(pen)
 
     def setSizeCursor(self, p):
-        if self.rect().contains(p):
+        # allow mouse cursor to change shape for scale more easily
+        rect = self.rect()
+        rect.setX(self.rect().x()+self.__line_width)
+        rect.setY(self.rect().y()+self.__line_width)
+        rect.setWidth(self.rect().width()-self.__line_width*2)
+        rect.setHeight(self.rect().height()-self.__line_width*2)
+
+        if rect.contains(p):
             # move
             self.setFlags(self.flags() | QGraphicsItem.ItemIsMovable)
             self.__cursor.setShape(Qt.SizeAllCursor)
