@@ -181,3 +181,7 @@ class SelectionBox(QGraphicsRectItem):
             self.setSizeCursor(p)
 
         return super().hoverMoveEvent(e)
+
+    def setLineWidth(self, n: int):
+        self.__line_width = n
+        self.__setStyleOfSelectionBox()
