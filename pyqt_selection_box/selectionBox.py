@@ -181,12 +181,3 @@ class SelectionBox(QGraphicsRectItem):
             self.setSizeCursor(p)
 
         return super().hoverMoveEvent(e)
-
-
-if __name__ == "__main__":
-    import sys
-
-    app = QApplication(sys.argv)
-    window = SelectionBox()
-    window.show()
-    app.exec_()
