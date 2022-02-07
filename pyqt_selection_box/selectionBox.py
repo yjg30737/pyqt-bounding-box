@@ -11,11 +11,6 @@ class SelectionBox(QGraphicsRectItem):
         self.__resizeEnabled = False
         self.__line_width = 3
 
-        self.__top = False
-        self.__bottom = False
-        self.__left = False
-        self.__right = False
-
         self.__default_width = 200.0
         self.__default_height = 200.0
 
@@ -23,12 +18,21 @@ class SelectionBox(QGraphicsRectItem):
         self.__min_height = 30
 
         self.__cursor = QCursor()
+
+        self.__initPosition()
         self.__initUi()
 
     def __initUi(self):
         self.setAcceptHoverEvents(True)
         self.setFlags(QGraphicsItem.ItemIsSelectable | QGraphicsItem.ItemIsFocusable)
         self.__setStyleOfSelectionBox()
+
+    # init the edge direction for set correct reshape cursor based on it
+    def __initPosition(self):
+        self.__top = False
+        self.__bottom = False
+        self.__left = False
+        self.__right = False
 
     def __setStyleOfSelectionBox(self):
         pen = QPen()
@@ -52,11 +56,7 @@ class SelectionBox(QGraphicsRectItem):
             self.setCursor(self.__cursor)
             self.__cursor = self.cursor()
             self.__resizeEnabled = False
-
-            self.__top = False
-            self.__bottom = False
-            self.__right = False
-            self.__left = False
+            self.__initPosition()
         else:
             # scale
             x = p.x()
