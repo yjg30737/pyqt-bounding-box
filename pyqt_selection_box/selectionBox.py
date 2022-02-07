@@ -61,6 +61,7 @@ class SelectionBox(QGraphicsRectItem):
             # scale
             x = p.x()
             y = p.y()
+
             def setResizeEnabled():
                 self.setFlags(self.flags() & ~QGraphicsItem.ItemIsMovable)
                 self.setCursor(self.__cursor)
@@ -71,76 +72,29 @@ class SelectionBox(QGraphicsRectItem):
             x2 = self.rect().width()
             y2 = self.rect().height()
 
-            # Top left
-            if abs(x-x1) <= self.__line_width and abs(y-y1) <= self.__line_width:
-                self.__cursor.setShape(Qt.SizeFDiagCursor)
-                self.__top = True
-                self.__left = True
-                self.__bottom = False
-                self.__right = False
-                setResizeEnabled()
+            self.__left = abs(x - x1) <= self.__line_width # if mouse cursor is at the almost far left
+            self.__top = abs(y - y1) <= self.__line_width # far top
+            self.__right = abs(x - (x2 + x1)) <= self.__line_width # far right
+            self.__bottom = abs(y - (y2 + y1)) <= self.__line_width # far bottom
 
-            # Top right
-            elif abs(x-(x2+x1)) <= self.__line_width and abs(y-y1) <= self.__line_width:
-                self.__cursor.setShape(Qt.SizeBDiagCursor)
-                self.__top = True
-                self.__right = True
-                self.__bottom = False
-                self.__left = False
-                setResizeEnabled()
-
-            # Bottom left
-            elif abs(x-x1) <= self.__line_width and abs(y-(y2+y1)) <= self.__line_width:
-                self.__cursor.setShape(Qt.SizeBDiagCursor)
-                self.__bottom = True
-                self.__left = True
-                self.__top = False
-                self.__right = False
-                setResizeEnabled()
-
-            # Bottom right
-            elif abs(x-(x2+x1)) <= self.__line_width and abs(y-(y2+y1)) <= self.__line_width:
-                self.__cursor.setShape(Qt.SizeFDiagCursor)
-                self.__bottom = True
-                self.__right = True
-                self.__top = False
-                self.__left = False
-                setResizeEnabled()
-
-            # Top
-            elif abs(y-y1) <= self.__line_width:
-                self.__top = True
-                self.__right = False
-                self.__left = False
-                self.__bottom = False
-                self.__cursor.setShape(Qt.SizeVerCursor)
-                setResizeEnabled()
-
-            # Bottom
-            elif abs(y-(y2+y1)) <= self.__line_width:
-                self.__bottom = True
-                self.__right = False
-                self.__left = False
-                self.__top = False
-                self.__cursor.setShape(Qt.SizeVerCursor)
-                setResizeEnabled()
-
-            # Left
-            elif abs(x-x1) <= self.__line_width:
-                self.__left = True
-                self.__right = False
-                self.__top = False
-                self.__bottom = False
-                self.__cursor.setShape(Qt.SizeHorCursor)
-                setResizeEnabled()
-
-            # Right
-            elif abs(x-(x2+x1)) <= self.__line_width:
-                self.__right = True
-                self.__left = False
-                self.__top = False
-                self.__bottom = False
-                self.__cursor.setShape(Qt.SizeHorCursor)
+            # set the cursor shape based on flag above
+            if self.__top or self.__left or self.__bottom or self.__right:
+                if self.__top and self.__left:
+                    self.__cursor.setShape(Qt.SizeFDiagCursor)
+                elif self.__top and self.__right:
+                    self.__cursor.setShape(Qt.SizeBDiagCursor)
+                elif self.__bottom and self.__left:
+                    self.__cursor.setShape(Qt.SizeBDiagCursor)
+                elif self.__bottom and self.__right:
+                    self.__cursor.setShape(Qt.SizeFDiagCursor)
+                elif self.__left:
+                    self.__cursor.setShape(Qt.SizeHorCursor)
+                elif self.__top:
+                    self.__cursor.setShape(Qt.SizeVerCursor)
+                elif self.__right:
+                    self.__cursor.setShape(Qt.SizeHorCursor)
+                elif self.__bottom:
+                    self.__cursor.setShape(Qt.SizeVerCursor)
                 setResizeEnabled()
 
     def mouseMoveEvent(self, e):
