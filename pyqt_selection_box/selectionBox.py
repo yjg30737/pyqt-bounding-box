@@ -105,24 +105,24 @@ class SelectionBox(QGraphicsRectItem):
             y = p.y()
 
             if self.__cursor.shape() == Qt.SizeHorCursor:
-                if self.__left:
+                if self.__left and rect.right()-x > self.__min_width:
                     rect.setLeft(x)
-                elif self.__right:
+                elif self.__right and x > 30:
                     rect.setRight(x)
             elif self.__cursor.shape() == Qt.SizeVerCursor:
-                if self.__top:
+                if self.__top and rect.bottom()-y > self.__min_height:
                     rect.setTop(y)
-                elif self.__bottom:
+                elif self.__bottom and y > self.__min_height:
                     rect.setBottom(y)
             elif self.__cursor.shape() == Qt.SizeBDiagCursor:
-                if self.__top and self.__right:
+                if self.__top and self.__right and x > self.__min_width and rect.bottom()-y > self.__min_height:
                     rect.setTopRight(p)
-                elif self.__bottom and self.__left:
+                elif self.__bottom and self.__left and rect.right()-x > self.__min_width and y > self.__min_height:
                     rect.setBottomLeft(p)
             elif self.__cursor.shape() == Qt.SizeFDiagCursor:
-                if self.__top and self.__left:
+                if self.__top and self.__left and rect.right()-x > self.__min_width and rect.bottom()-y > self.__min_height:
                     rect.setTopLeft(p)
-                elif self.__bottom and self.__right:
+                elif self.__bottom and self.__right and x > self.__min_width and y > self.__min_height:
                     rect.setBottomRight(p)
 
             self.setRect(rect)
