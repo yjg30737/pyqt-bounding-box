@@ -44,10 +44,10 @@ class SelectionBox(QGraphicsRectItem):
     def setSizeCursor(self, p):
         # allow mouse cursor to change shape for scale more easily
         rect = self.rect()
-        rect.setX(self.rect().x()+self.__line_width)
-        rect.setY(self.rect().y()+self.__line_width)
-        rect.setWidth(self.rect().width()-self.__line_width*2)
-        rect.setHeight(self.rect().height()-self.__line_width*2)
+        rect.setX(self.rect().x() + self.__line_width)
+        rect.setY(self.rect().y() + self.__line_width)
+        rect.setWidth(self.rect().width() - self.__line_width * 2)
+        rect.setHeight(self.rect().height() - self.__line_width * 2)
 
         if rect.contains(p):
             # move
@@ -72,10 +72,10 @@ class SelectionBox(QGraphicsRectItem):
             x2 = self.rect().width()
             y2 = self.rect().height()
 
-            self.__left = abs(x - x1) <= self.__line_width # if mouse cursor is at the almost far left
-            self.__top = abs(y - y1) <= self.__line_width # far top
-            self.__right = abs(x - (x2 + x1)) <= self.__line_width # far right
-            self.__bottom = abs(y - (y2 + y1)) <= self.__line_width # far bottom
+            self.__left = abs(x - x1) <= self.__line_width  # if mouse cursor is at the almost far left
+            self.__top = abs(y - y1) <= self.__line_width  # far top
+            self.__right = abs(x - (x2 + x1)) <= self.__line_width  # far right
+            self.__bottom = abs(y - (y2 + y1)) <= self.__line_width  # far bottom
 
             # set the cursor shape based on flag above
             if self.__top or self.__left or self.__bottom or self.__right:
@@ -103,26 +103,27 @@ class SelectionBox(QGraphicsRectItem):
             p = e.pos()
             x = p.x()
             y = p.y()
+
             if self.__cursor.shape() == Qt.SizeHorCursor:
-                if self.__left and rect.right()-x > self.__min_width:
+                if self.__left:
                     rect.setLeft(x)
-                elif self.__right and x > 30:
+                elif self.__right:
                     rect.setRight(x)
             elif self.__cursor.shape() == Qt.SizeVerCursor:
-                if self.__top and rect.bottom()-y > self.__min_height:
+                if self.__top:
                     rect.setTop(y)
-                elif self.__bottom and y > self.__min_height:
+                elif self.__bottom:
                     rect.setBottom(y)
             elif self.__cursor.shape() == Qt.SizeBDiagCursor:
-                if self.__top and self.__right and x > self.__min_width and rect.bottom()-y > self.__min_height:
-                    rect.setTopRight(QPoint(x, y))
-                elif self.__bottom and self.__left and rect.right()-x > self.__min_width and y > self.__min_height:
-                    rect.setBottomLeft(QPoint(x, y))
+                if self.__top and self.__right:
+                    rect.setTopRight(p)
+                elif self.__bottom and self.__left:
+                    rect.setBottomLeft(p)
             elif self.__cursor.shape() == Qt.SizeFDiagCursor:
-                if self.__top and self.__left and rect.right()-x > self.__min_width and rect.bottom()-y > self.__min_height:
-                    rect.setTopLeft(QPoint(x, y))
-                elif self.__bottom and self.__right and x > self.__min_width and y > self.__min_height:
-                    rect.setBottomRight(QPoint(x, y))
+                if self.__top and self.__left:
+                    rect.setTopLeft(p)
+                elif self.__bottom and self.__right:
+                    rect.setBottomRight(p)
 
             self.setRect(rect)
 
