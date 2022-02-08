@@ -41,7 +41,7 @@ class SelectionBox(QGraphicsRectItem):
         self.setRect(QRectF(0.0, 0.0, self.__default_width, self.__default_height))
         self.setPen(pen)
 
-    def setSizeCursor(self, p):
+    def __setCursorShapeForCurrentPoint(self, p):
         # allow mouse cursor to change shape for scale more easily
         rect = self.rect()
         rect.setX(self.rect().x() + self.__line_width)
@@ -133,7 +133,7 @@ class SelectionBox(QGraphicsRectItem):
         p = e.pos()
 
         if self.boundingRect().contains(p) or self.rect().contains(p):
-            self.setSizeCursor(p)
+            self.__setCursorShapeForCurrentPoint(p)
 
         return super().hoverMoveEvent(e)
 
