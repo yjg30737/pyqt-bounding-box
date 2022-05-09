@@ -1,5 +1,5 @@
-# pyqt-selection-box
-PyQt selection box for QGraphicsView
+# pyqt-bounding-box
+PyQt bounding box for graphic design software
 
 ## Requirements
 PyQt5 >= 5.8
