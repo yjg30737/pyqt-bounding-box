@@ -15,10 +15,11 @@ PyQt5 >= 5.8
 
 ## Example
 Code Sample
+
 ```python
 from PyQt5.QtWidgets import QWidget, QGraphicsView, QVBoxLayout, QApplication, QGraphicsScene
 
-from pyqt_selection_box.selectionBox import SelectionBox
+from pyqt_bounding_box.boundingBox import BoundingBox
 
 
 class Example(QWidget):
@@ -31,7 +32,7 @@ class Example(QWidget):
         self.__scene = QGraphicsScene()
         self.__scene.setSceneRect(0, 0, 400, 400)
 
-        item = SelectionBox()
+        item = BoundingBox()
         # item.setLineWidth(8) If you want to change the edge line width, add the code.
         self.__scene.addItem(item)
         view.setScene(self.__scene)

@@ -3,7 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 
-class SelectionBox(QGraphicsRectItem):
+class BoundingBox(QGraphicsRectItem):
     def __init__(self):
         super().__init__()
         self.__resizeEnabled = False
@@ -23,7 +23,7 @@ class SelectionBox(QGraphicsRectItem):
     def __initUi(self):
         self.setAcceptHoverEvents(True)
         self.setFlags(QGraphicsItem.ItemIsSelectable | QGraphicsItem.ItemIsFocusable)
-        self.__setStyleOfSelectionBox()
+        self.__setStyleOfBoundingBox()
 
     # init the edge direction for set correct reshape cursor based on it
     def __initPosition(self):
@@ -32,7 +32,7 @@ class SelectionBox(QGraphicsRectItem):
         self.__left = False
         self.__right = False
 
-    def __setStyleOfSelectionBox(self):
+    def __setStyleOfBoundingBox(self):
         pen = QPen()
         pen.setStyle(Qt.DashLine)
         pen.setWidth(self.__line_width)
@@ -151,4 +151,4 @@ class SelectionBox(QGraphicsRectItem):
 
     def setLineWidth(self, n: int):
         self.__line_width = n
-        self.__setStyleOfSelectionBox()
+        self.__setStyleOfBoundingBox()
