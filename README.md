@@ -57,6 +57,6 @@ Result
 https://user-images.githubusercontent.com/55078043/148708740-cd1f0765-7768-44b6-88bb-770e2d34fe12.mp4
 
 ## Note
-```SelectionBox``` class inherits ```QGraphicsRectItem```.
+```BoundingBox``` class inherits ```QGraphicsRectItem```.
 
 Default line width value is 3.
