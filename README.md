@@ -5,7 +5,7 @@ PyQt bounding box for graphic design software
 PyQt5 >= 5.8
 
 ## Setup
-```pip3 install git+https://github.com/yjg30737/pyqt-selection-box.git --upgrade```
+`python -m pip install pyqt-bounding-box`
 
 ## Feature
 * Cursor shape changes properly for position (horizontal/vertical edge, etc.)
@@ -55,8 +55,3 @@ if __name__ == "__main__":
 Result
 
 https://user-images.githubusercontent.com/55078043/148708740-cd1f0765-7768-44b6-88bb-770e2d34fe12.mp4
-
-## Note
-```BoundingBox``` class inherits ```QGraphicsRectItem```.
-
-Default line width value is 3.
