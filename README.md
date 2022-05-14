@@ -55,3 +55,7 @@ if __name__ == "__main__":
 Result
 
 https://user-images.githubusercontent.com/55078043/148708740-cd1f0765-7768-44b6-88bb-770e2d34fe12.mp4
+
+## See Also
+* <a href="https://github.com/yjg30737/pyqt-hbounding-box.git">pyqt-hbounding-box</a>
+* <a href="https://github.com/yjg30737/pyqt-vbounding-box.git">pyqt-vbounding-box</a>
