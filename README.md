@@ -17,6 +17,8 @@ PyQt5 >= 5.8
 * setLineWidth(self, n: int) - Default width is 3
 * setColor(self, color: QColor) - Default color is black
 * setStyle(self, style: Qt.PenStyle) - Default style is Qt.DashLine (You can see more about this style in <a href="https://doc.qt.io/qt-6/qt.html#PenStyle-enum">here</a>)
+* setWidth(width: int)
+* setHeight(height: int)
 
 ## Example
 Code Sample
