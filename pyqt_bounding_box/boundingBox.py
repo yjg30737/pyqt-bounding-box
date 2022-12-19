@@ -173,3 +173,8 @@ class BoundingBox(QGraphicsRectItem):
         rect = self.rect()
         rect.setHeight(height)
         self.setRect(rect)
+
+    def setSize(self, width: int, height: int):
+        rect = self.rect()
+        rect.setSize(QSizeF(width, height))
+        self.setRect(rect)
