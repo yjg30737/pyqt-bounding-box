@@ -103,22 +103,22 @@ class BoundingBox(QGraphicsRectItem):
             y = p.y()
 
             if self.__cursor.shape() == Qt.SizeHorCursor:
-                if self.__left and rect.right()-x > self.__min_width:
+                if self.__left and rect.right() - x > self.__min_width:
                     rect.setLeft(x)
                 elif self.__right and x > 30:
                     rect.setRight(x)
             elif self.__cursor.shape() == Qt.SizeVerCursor:
-                if self.__top and rect.bottom()-y > self.__min_height:
+                if self.__top and rect.bottom() - y > self.__min_height:
                     rect.setTop(y)
                 elif self.__bottom and y > self.__min_height:
                     rect.setBottom(y)
             elif self.__cursor.shape() == Qt.SizeBDiagCursor:
-                if self.__top and self.__right and x > self.__min_width and rect.bottom()-y > self.__min_height:
+                if self.__top and self.__right and x > self.__min_width and rect.bottom() - y > self.__min_height:
                     rect.setTopRight(p)
-                elif self.__bottom and self.__left and rect.right()-x > self.__min_width and y > self.__min_height:
+                elif self.__bottom and self.__left and rect.right() - x > self.__min_width and y > self.__min_height:
                     rect.setBottomLeft(p)
             elif self.__cursor.shape() == Qt.SizeFDiagCursor:
-                if self.__top and self.__left and rect.right()-x > self.__min_width and rect.bottom()-y > self.__min_height:
+                if self.__top and self.__left and rect.right() - x > self.__min_width and rect.bottom() - y > self.__min_height:
                     rect.setTopLeft(p)
                 elif self.__bottom and self.__right and x > self.__min_width and y > self.__min_height:
                     rect.setBottomRight(p)
@@ -152,3 +152,14 @@ class BoundingBox(QGraphicsRectItem):
     def setLineWidth(self, n: int):
         self.__line_width = n
         self.__setStyleOfBoundingBox()
+
+    def setColor(self, color: QColor):
+        pen = self.pen()
+        pen.setColor(color)
+        self.setPen(pen)
+
+    # https: // doc.qt.io / qt - 6 / qt.html  # PenStyle-enum
+    def setStyle(self, style: Qt.PenStyle):
+        pen = self.pen()
+        pen.setStyle(style)
+        self.setPen(pen)
