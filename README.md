@@ -19,8 +19,9 @@ PyQt5 >= 5.8
 * setStyle(self, style: Qt.PenStyle) - Default style is Qt.DashLine (You can see more about this style in <a href="https://doc.qt.io/qt-6/qt.html#PenStyle-enum">here</a>)
 * setWidth(width: int)
 * setHeight(height: int)
+* setSize(width: int, height: int)
 
-You can use the standard function like `setPen(pen: QPen)` if you know how to use it, Here's the example
+You can use the standard function like `setPen(pen: QPen)` if you know how to use it, Here's the example:
 
 ```python
 item = BoundingBox()
