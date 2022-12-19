@@ -24,10 +24,12 @@ You can use the standard function like `setPen(pen: QPen)` if you know how to us
 
 ```python
 item = BoundingBox()
+
 pen = QPen()
 pen.setStyle(Qt.DashLine)
 pen.setWidth(3)
 pen.setColor(QColor(0, 0, 0))
+
 item.setPen(pen)
 ```
 
