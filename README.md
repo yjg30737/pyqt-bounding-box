@@ -14,9 +14,9 @@ PyQt5 >= 5.8
 * Being able to change the attribute of the box
 
 ## Methods Overview
-* setLineWidth(self, n: int)
-* setColor(self, color: QColor)
-* setStyle(self, style: Qt.PenStyle)
+* setLineWidth(self, n: int) - Default width is 3
+* setColor(self, color: QColor) - Default color is black
+* setStyle(self, style: Qt.PenStyle) - Default style is Qt.DashLine (You can see more about this style in https://doc.qt.io/qt-6/qt.html#PenStyle-enum)
 
 ## Example
 Code Sample
@@ -39,6 +39,8 @@ class Example(QWidget):
 
         item = BoundingBox()
         # item.setLineWidth(8) If you want to change the edge line width, add the code.
+        # item.setColor(QColor(255, 255, 255)) If you want to change the color of the line to white, add the code.
+        # item.setStyle(Qt.SolidLine) If you want to change the style of line from dashed to solid line, add the code.
         self.__scene.addItem(item)
         view.setScene(self.__scene)
 
