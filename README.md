@@ -20,6 +20,17 @@ PyQt5 >= 5.8
 * setWidth(width: int)
 * setHeight(height: int)
 
+You can use the standard function like `setPen(pen: QPen)` if you know how to use it, Here's the example
+
+```python
+item = BoundingBox()
+pen = QPen()
+pen.setStyle(Qt.DashLine)
+pen.setWidth(3)
+pen.setColor(QColor(0, 0, 0))
+item.setPen(pen)
+```
+
 ## Example
 Code Sample
 
