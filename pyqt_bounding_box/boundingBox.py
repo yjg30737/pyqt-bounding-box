@@ -7,6 +7,7 @@ class BoundingBox(QGraphicsRectItem):
     def __init__(self):
         super().__init__()
         self.__resizeEnabled = False
+        self.__resize_square_f = False
         self.__line_width = 3
 
         self.__default_width = 200.0
@@ -102,26 +103,30 @@ class BoundingBox(QGraphicsRectItem):
             x = p.x()
             y = p.y()
 
-            if self.__cursor.shape() == Qt.SizeHorCursor:
-                if self.__left and rect.right() - x > self.__min_width:
-                    rect.setLeft(x)
-                elif self.__right and x > 30:
-                    rect.setRight(x)
-            elif self.__cursor.shape() == Qt.SizeVerCursor:
-                if self.__top and rect.bottom() - y > self.__min_height:
-                    rect.setTop(y)
-                elif self.__bottom and y > self.__min_height:
-                    rect.setBottom(y)
-            elif self.__cursor.shape() == Qt.SizeBDiagCursor:
-                if self.__top and self.__right and x > self.__min_width and rect.bottom() - y > self.__min_height:
-                    rect.setTopRight(p)
-                elif self.__bottom and self.__left and rect.right() - x > self.__min_width and y > self.__min_height:
-                    rect.setBottomLeft(p)
-            elif self.__cursor.shape() == Qt.SizeFDiagCursor:
-                if self.__top and self.__left and rect.right() - x > self.__min_width and rect.bottom() - y > self.__min_height:
-                    rect.setTopLeft(p)
-                elif self.__bottom and self.__right and x > self.__min_width and y > self.__min_height:
-                    rect.setBottomRight(p)
+            if self.__resize_square_f:
+                size = p.manhattanLength() // 2
+                rect.setBottomRight(QPoint(int(size), int(size)))
+            else:
+                if self.__cursor.shape() == Qt.SizeHorCursor:
+                    if self.__left and rect.right() - x > self.__min_width:
+                        rect.setLeft(x)
+                    elif self.__right and x > 30:
+                        rect.setRight(x)
+                elif self.__cursor.shape() == Qt.SizeVerCursor:
+                    if self.__top and rect.bottom() - y > self.__min_height:
+                        rect.setTop(y)
+                    elif self.__bottom and y > self.__min_height:
+                        rect.setBottom(y)
+                elif self.__cursor.shape() == Qt.SizeBDiagCursor:
+                    if self.__top and self.__right and x > self.__min_width and rect.bottom() - y > self.__min_height:
+                        rect.setTopRight(p)
+                    elif self.__bottom and self.__left and rect.right() - x > self.__min_width and y > self.__min_height:
+                        rect.setBottomLeft(p)
+                elif self.__cursor.shape() == Qt.SizeFDiagCursor:
+                    if self.__top and self.__left and rect.right() - x > self.__min_width and rect.bottom() - y > self.__min_height:
+                        rect.setTopLeft(p)
+                    elif self.__bottom and self.__right and x > self.__min_width and y > self.__min_height:
+                        rect.setBottomRight(p)
 
             self.setRect(rect)
 
@@ -178,3 +183,6 @@ class BoundingBox(QGraphicsRectItem):
         rect = self.rect()
         rect.setSize(QSizeF(width, height))
         self.setRect(rect)
+
+    def setResizeAsSquare(self, f: bool):
+        self.__resize_square_f = f
