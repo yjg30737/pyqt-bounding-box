@@ -33,6 +33,15 @@ class BoundingBox(QGraphicsRectItem):
         self.__left = False
         self.__right = False
 
+    def __isAbleToSetTop(self, rect, y):
+        return rect.bottom() - y > self.__min_height
+    def __isAbleToSetBottom(self, y):
+        return y > self.__min_height
+    def __isAbleToSetLeft(self, rect, x):
+        return rect.right() - x > self.__min_width
+    def __isAbleToSetRight(self, x):
+        return x > self.__min_width
+
     def __setStyleOfBoundingBox(self):
         pen = QPen()
         pen.setStyle(Qt.DashLine)
@@ -114,24 +123,24 @@ class BoundingBox(QGraphicsRectItem):
                         rect.setBottomRight(p)
             else:
                 if self.__cursor.shape() == Qt.SizeHorCursor:
-                    if self.__left and rect.right() - x > self.__min_width:
+                    if self.__left and self.__isAbleToSetLeft(rect, x):
                         rect.setLeft(x)
-                    elif self.__right and x > self.__min_width:
+                    elif self.__right and self.__isAbleToSetRight(x):
                         rect.setRight(x)
                 elif self.__cursor.shape() == Qt.SizeVerCursor:
-                    if self.__top and rect.bottom() - y > self.__min_height:
+                    if self.__top and self.__isAbleToSetTop(rect, y):
                         rect.setTop(y)
-                    elif self.__bottom and y > self.__min_height:
+                    elif self.__bottom and self.__isAbleToSetBottom(y):
                         rect.setBottom(y)
                 elif self.__cursor.shape() == Qt.SizeBDiagCursor:
-                    if self.__top and self.__right and x > self.__min_width and rect.bottom() - y > self.__min_height:
+                    if self.__top and self.__right and self.__isAbleToSetTop(rect, y) and self.__isAbleToSetRight(x):
                         rect.setTopRight(p)
-                    elif self.__bottom and self.__left and rect.right() - x > self.__min_width and y > self.__min_height:
+                    elif self.__bottom and self.__left and self.__isAbleToSetBottom(y) and self.__isAbleToSetLeft(rect, x):
                         rect.setBottomLeft(p)
                 elif self.__cursor.shape() == Qt.SizeFDiagCursor:
-                    if self.__top and self.__left and rect.right() - x > self.__min_width and rect.bottom() - y > self.__min_height:
+                    if self.__top and self.__left and self.__isAbleToSetTop(rect, y) and self.__isAbleToSetLeft(rect, x):
                         rect.setTopLeft(p)
-                    elif self.__bottom and self.__right and x > self.__min_width and y > self.__min_height:
+                    elif self.__bottom and self.__right and self.__isAbleToSetBottom(y) and self.__isAbleToSetRight(x):
                         rect.setBottomRight(p)
 
             self.setRect(rect)
