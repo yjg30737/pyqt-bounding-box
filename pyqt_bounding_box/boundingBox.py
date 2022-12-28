@@ -206,3 +206,8 @@ class BoundingBox(QGraphicsRectItem):
 
     def setResizeAsSquare(self, f: bool):
         self.__resize_square_f = f
+
+    def setMinimumSize(self, width, height):
+        self.__min_width = width
+        self.__min_height = height
+        # TODO set width or height of the current rect larger than minimum size after at least one of them is set by
