@@ -33,6 +33,8 @@ class BoundingBox(QGraphicsRectItem):
         self.__left = False
         self.__right = False
 
+    # TODO need more refactoring
+    # This is for preventing setting the width and height smaller than minimum size of each
     def __isAbleToSetTop(self, rect, y):
         return rect.bottom() - y > self.__min_height
     def __isAbleToSetBottom(self, y):
@@ -113,6 +115,7 @@ class BoundingBox(QGraphicsRectItem):
             y = p.y()
 
             if self.__resize_square_f:
+                # TODO i'm still working on this
                 # get the average of width and height
                 size = p.manhattanLength() // 2
                 p = QPoint(int(size), int(size))
