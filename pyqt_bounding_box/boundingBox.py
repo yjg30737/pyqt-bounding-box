@@ -104,13 +104,19 @@ class BoundingBox(QGraphicsRectItem):
             y = p.y()
 
             if self.__resize_square_f:
+                # get the average of width and height
                 size = p.manhattanLength() // 2
-                rect.setBottomRight(QPoint(int(size), int(size)))
+                p = QPoint(int(size), int(size))
+                if self.__cursor.shape() == Qt.SizeFDiagCursor:
+                    if self.__top and self.__left:
+                        rect.setTopLeft(p)
+                    elif self.__bottom and self.__right:
+                        rect.setBottomRight(p)
             else:
                 if self.__cursor.shape() == Qt.SizeHorCursor:
                     if self.__left and rect.right() - x > self.__min_width:
                         rect.setLeft(x)
-                    elif self.__right and x > 30:
+                    elif self.__right and x > self.__min_width:
                         rect.setRight(x)
                 elif self.__cursor.shape() == Qt.SizeVerCursor:
                     if self.__top and rect.bottom() - y > self.__min_height:
